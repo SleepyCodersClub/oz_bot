@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import command
 import data.leagues as leagues
-import function.old_chris
+import function
 import settings
 
 
@@ -19,6 +19,7 @@ if leagues_col.count_documents({}) == 0:
     leagues_col.insert_many(leagues.leagues)
 else:
     print(f"Leagues already present.")
+
 
 @bot.event
 async def on_ready():
@@ -47,21 +48,26 @@ async def bb_teams(ctx, team_pack: bool = True, expansion: bool = True):
         expansion = False
     await command.bb_teams.handle(ctx, team_pack, expansion)
 
+
 @bot.command()
 async def current_round(ctx, league_name):
     await command.current_round.handle(ctx, league_name, bb_db)
 
 
 @bot.command()
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
 async def load_schedule(ctx, league_name):
     await command.load_schedule.handle(ctx, league_name, bb_db)
 
 
 @bot.command()
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
 async def roll_league(ctx, league_name, advance=1):
     await command.roll_league.handle(ctx, league_name, bb_db, advance)
 
+
 @bot.command()
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
 async def roll_league_back(ctx, league_name, reverse=1):
     await command.roll_league_back.handle(ctx, league_name, bb_db, reverse)
 
@@ -72,7 +78,9 @@ async def scheddy(ctx, league_name):
 
 
 @bot.command()
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
 async def set_round(ctx, league_name, set_rnd: int):
     await command.set_round.handle(ctx, league_name, bb_db, set_rnd)
+
 
 bot.run(settings.BOT_TOKEN)

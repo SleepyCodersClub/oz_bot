@@ -74,7 +74,7 @@ async def roll_league_back(ctx, league_name, reverse=1):
 
 @bot.command()
 async def scheddy(ctx, league_name):
-    await command.scheddy.handle(ctx, league_name, bb_db)
+    await command.scheddy.handle(ctx, bb_db, league_name)
 
 
 @bot.command()

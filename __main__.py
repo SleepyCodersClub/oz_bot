@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import command
 import data.leagues as leagues
-import function
+import function.old_chris as old_chris
 import settings
 
 
@@ -29,7 +29,7 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     if message.author.id == settings.CHRIS_ID:
-        await function.old_chris.handle(message)
+        await old_chris.handle(message)
         print(f'Attempted to react to message')
     await bot.process_commands(message)
 

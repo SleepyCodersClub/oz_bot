@@ -28,7 +28,7 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if message.author.id == settings.CHRIS_ID:
+    if message.author.id == int(settings.CHRIS_ID):
         await old_chris.handle(message)
         print(f'Attempted to react to message')
     await bot.process_commands(message)
@@ -55,19 +55,19 @@ async def current_round(ctx, league_name):
 
 
 @bot.command()
-@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def load_schedule(ctx, league_name):
     await command.load_schedule.handle(ctx, league_name, bb_db)
 
 
 @bot.command()
-@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def roll_league(ctx, league_name, advance=1):
     await command.roll_league.handle(ctx, league_name, bb_db, advance)
 
 
 @bot.command()
-@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def roll_league_back(ctx, league_name, reverse=1):
     await command.roll_league_back.handle(ctx, league_name, bb_db, reverse)
 
@@ -78,7 +78,7 @@ async def scheddy(ctx, league_name):
 
 
 @bot.command()
-@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOODBOWL_ADMIN)
+@commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def set_round(ctx, league_name, set_rnd: int):
     await command.set_round.handle(ctx, league_name, bb_db, set_rnd)
 

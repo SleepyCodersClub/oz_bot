@@ -1,4 +1,4 @@
-from beeprint import pp
+import json
 
 
 # when called return a table formatted version of the Blood Bowl schedule for the current week
@@ -14,4 +14,4 @@ async def handle(ctx, bb_db, league_name="ozlan_bloodbowl_redux"):
 
     round_schedule = league.find_one({ "_id": current_round_no })
 
-    await ctx.send(pp(round_schedule))
+    await ctx.send(json.dumps(round_schedule))

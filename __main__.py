@@ -3,6 +3,8 @@ from discord.ext import commands
 
 import command
 import data.leagues as leagues
+import data.skills as skills
+import data.teams as teams
 import function.old_chris as old_chris
 import settings
 
@@ -19,6 +21,18 @@ if leagues_col.count_documents({}) == 0:
     leagues_col.insert_many(leagues.leagues)
 else:
     print(f"Leagues already present.")
+
+teams_col = bb_db["teams"]
+if teams_col.count_documents({}) == 0:
+    teams_col.insert_many(teams.teams)
+else:
+    print(f"Teams already present.")
+
+skills_col = bb_db["skills"]
+if skills_col.count_documents({}) == 0:
+    skills_col.insert_many(skills.skills)
+else:
+    print(f"Skills already present.")
 
 
 @bot.event
@@ -40,13 +54,15 @@ async def hello(ctx):
 
 
 @bot.command()
-async def bb_teams(ctx, team_pack: bool = True, expansion: bool = True):
-    print(f'bbteams executed')
+async def bb_teams(ctx, league_type="standard", team_pack: bool = True, expansion: bool = True):
     if team_pack is not True:
         team_pack = False
     if expansion is not True:
         expansion = False
-    await command.bb_teams.handle(ctx, team_pack, expansion)
+    if league_type is not "standard":
+        await command.bb_teams.handle(ctx, league_type, team_pack, expansion)
+    else:
+        await command.bb_teams.handle(ctx, team_pack, expansion)
 
 
 @bot.command()
@@ -58,6 +74,11 @@ async def current_round(ctx, league_name):
 @commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def load_schedule(ctx, league_name):
     await command.load_schedule.handle(ctx, league_name, bb_db)
+
+
+@bot.command()
+async def gen_team(ctx, race):
+    await command.gen_team.handle(ctx, race, bb_db)
 
 
 @bot.command()

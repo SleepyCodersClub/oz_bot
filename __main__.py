@@ -78,7 +78,7 @@ async def scheddy(ctx, league_name="ozlan_bloodbowl_redux"):
 
 
 @bot.command()
-async def scheddy_plus(ctx, week, league_name="ozlan_bloodbowl_redux"):
+async def scheddy_plus(ctx, week: int, league_name="ozlan_bloodbowl_redux"):
     await command.scheddy_plus.handle(ctx, bb_db, week, league_name)
 
 

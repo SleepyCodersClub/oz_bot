@@ -1,5 +1,5 @@
-# when called return a table formatted version of the Blood Bowl schedule for the current week
-async def handle(ctx, bb_db, league_name="ozlan_bloodbowl_redux"):
+# when called return a table formatted version of the Blood Bowl schedule for a requested week
+async def handle(ctx, bb_db, week, league_name="ozlan_bloodbowl_redux"):
     all_leagues = bb_db["leagues"]
     league = bb_db[league_name]
 
@@ -7,9 +7,9 @@ async def handle(ctx, bb_db, league_name="ozlan_bloodbowl_redux"):
     current_round = all_leagues.find_one(round_query)
 
     print(current_round)
-    current_round_no = current_round["current_round"]
+    requested_round_no = current_round["current_round"] + week
 
-    round_schedule = league.find_one({"_id": current_round_no})
+    round_schedule = league.find_one({"_id": requested_round_no})
 
     output_string = ""
 

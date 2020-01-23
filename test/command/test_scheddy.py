@@ -1,4 +1,4 @@
-from command import scheddy
+from command import scheddy_plus
 
 
 def run_test():
@@ -16,7 +16,7 @@ def run_test():
 
 
 def test_is_this_week(date):
-    value = scheddy.is_this_week(date)
+    value = scheddy_plus.is_this_week(date)
 
     return value
 

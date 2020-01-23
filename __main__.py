@@ -78,6 +78,11 @@ async def scheddy(ctx, league_name="ozlan_bloodbowl_redux"):
 
 
 @bot.command()
+async def scheddy_plus(ctx, week, league_name="ozlan_bloodbowl_redux"):
+    await command.scheddy_plus.handle(ctx, bb_db, week, league_name)
+
+
+@bot.command()
 @commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def set_round(ctx, league_name, set_rnd: int):
     await command.set_round.handle(ctx, league_name, bb_db, set_rnd)

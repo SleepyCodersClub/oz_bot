@@ -65,8 +65,8 @@ skills = [
         "skills": [
             "Big Hand",
             "Claw",
-            "Disturbing Presence"
-            "Extra Arms"
+            "Disturbing Presence",
+            "Extra Arms",
             "Foul Appearance",
             "Horns",
             "Prehensile Tail",

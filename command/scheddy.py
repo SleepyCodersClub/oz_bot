@@ -16,5 +16,4 @@ async def handle(ctx, bb_db, league_name="ozlan_bloodbowl_redux"):
     for match in round_schedule["match"]:
         output_string += f'**{match["home"]}** vs **{match["away"]}** \n'
 
-
     await ctx.send(output_string)

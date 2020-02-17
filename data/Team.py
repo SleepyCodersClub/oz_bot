@@ -1,5 +1,6 @@
 class Team:
-    def __init__(self, players, rerolls, apothecary):
+    def __init__(self, race, unit, players, cost):
+        self.race = race
+        self.unit = unit
         self.players = players
-        self.rerolls = rerolls
-        self.apothecary = apothecary
+        self.cost = cost * 11

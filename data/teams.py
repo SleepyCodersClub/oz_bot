@@ -16,7 +16,7 @@ teams = [
         "profile": {
             "name": "Bretonnian",
             "lineman": "Lineman",
-            "tv": 40000,
+            "cost": 40000,
             "reroll": 70000,
             "skills": ["general"],
             "doubles": ["agility", "passing", "strength"],
@@ -29,6 +29,7 @@ teams = [
             "name": "Chaos",
             "lineman": "Beastman",
             "cost": 60000,
+            "reroll": 60000,
             "skills": ["general", "mutation", "strength"],
             "doubles": ["agility", "passing"],
             "starting_skills": ["Horns"]
@@ -204,7 +205,7 @@ teams = [
     {
         "team": "ogres",
         "profile": {
-            "name": "Ogre:",
+            "name": "Ogre",
             "lineman": "Gnoblar",
             "cost": 20000,
             "reroll": 70000,

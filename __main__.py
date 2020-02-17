@@ -60,6 +60,15 @@ async def load_schedule(ctx, league_name):
     await command.load_schedule.handle(ctx, league_name, bb_db)
 
 
+# OZ THIS IS THE COMMAND YOU ARE WORKING ON
+@bot.command()
+# ctx is the bot context - get the user id from this - google discord.py api.
+# coach_name is obviously the user supplied coach name in game.
+# bb_db is the link through to the database - it just makes it easier than initialising it in every command file.
+async def register_coach(ctx, coach_name):
+    await command.register_coach.handle(ctx, coach_name, bb_db)
+
+
 @bot.command()
 @commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def roll_league(ctx, league_name, advance=1):

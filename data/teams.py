@@ -126,7 +126,7 @@ teams = [
             "cost": 50000,
             "reroll": 50000,
             "skills": ["general"],
-            "doubles": ["agility", "passong", "strength"],
+            "doubles": ["agility", "passing", "strength"],
             "starting_skills": []
         }
     },

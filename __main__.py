@@ -82,6 +82,11 @@ async def gen_team(ctx, race):
 
 
 @bot.command()
+async def gen_player(ctx, race):
+    await command.gen_player.handle(ctx, race, bb_db)
+
+
+@bot.command()
 @commands.has_any_role(settings.SERVER_ADMIN, settings.BLOOD_BOWL_ADMIN)
 async def roll_league(ctx, league_name, advance=1):
     await command.roll_league.handle(ctx, league_name, bb_db, advance)

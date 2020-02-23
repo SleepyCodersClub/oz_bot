@@ -1,4 +1,3 @@
-
 from data.Team import Team
 from function.gen_skilled_player import gen_skilled_player
 from function.gen_skills import gen_skill_pool

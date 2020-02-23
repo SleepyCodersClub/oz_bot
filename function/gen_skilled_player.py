@@ -2,7 +2,7 @@ from random import choice
 
 from data.Player import Player
 
-from gen_skills import gen_skill_pool
+from function.gen_skills import gen_skill_pool
 
 
 def gen_skilled_player(team_profile, skills_col):

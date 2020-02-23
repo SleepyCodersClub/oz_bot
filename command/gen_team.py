@@ -1,8 +1,6 @@
-from random import choice
-from random import randint
-
-from data.Player import Player
 from data.Team import Team
+from function.gen_skilled_player import gen_skilled_player
+from function.gen_skills import gen_skill_pool
 
 
 async def handle(ctx, race, bb_db):
@@ -26,55 +24,3 @@ def gen_team(team_profile, skills_col):
         roster.append(gen_skilled_player(team_profile, gen_skill_pool(team_profile, skills_col)))
 
     return Team(team_profile.get('name'), team_profile.get('lineman'), roster, team_profile.get('cost'))
-
-
-def gen_skilled_player(team_profile, skill_pool):
-    print(skill_pool)
-    skills = []
-    starting_skills = team_profile.get('starting_skills')
-    print(starting_skills)
-
-    while len(skills) < 3:
-        skill = select_skills(skill_pool)
-
-        if skill not in skills and skill not in starting_skills:
-            skills.append(skill)
-    print(skills)
-    return Player(skills)
-
-
-def gen_skill_pool(team_profile, skills_col):
-    if len(set(roll_skills())) == 1:
-        return make_doubles_skills(team_profile, skills_col)
-    else:
-        return make_skills(team_profile, skills_col)
-
-
-def make_skills(team_profile, skills_col):
-    skills = []
-    for category in team_profile.get('skills'):
-        for skill in skills_col.find_one({'category': category}, {'_id': 0, 'category': 0}).get('skills'):
-            skills.append(skill)
-    return skills
-
-
-def make_doubles_skills(team_profile, skills_col):
-    skills = []
-    for category in team_profile.get('doubles'):
-        for skill in skills_col.find_one({'category': category}, {'_id': 0, 'category': 0}).get('skills'):
-            skills.append(skill)
-    return skills + make_skills(team_profile, skills_col)
-
-
-# Returns a 2 item list of randomly generated integers between 1 and 6 (2d6 simulation).
-def roll_skills():
-    result = []
-
-    for _ in range(2):
-        result.append(randint(1, 6))
-
-    return result
-
-
-def select_skills(skill_pool):
-    return choice(skill_pool)

@@ -10,6 +10,6 @@ async def handle(ctx, race, bb_db):
     output_string = ''
 
     player_dict = player.__dict__
-    output_string += f'Player: {team_profile.get("race")} {team_profile.get("unit")}. Skills: {player_dict["skills"]} \n'
+    output_string += f'Player: {team_profile.get("name")} {team_profile.get("lineman")}. Skills: {player_dict["skills"]} \n'
 
     await ctx.author.send(output_string)

@@ -1,6 +1,5 @@
 from data.Team import Team
 from function.gen_skilled_player import gen_skilled_player
-from function.gen_skills import gen_skill_pool
 
 
 async def handle(ctx, race, bb_db):
@@ -21,6 +20,6 @@ def gen_team(team_profile, skills_col):
     roster = []
 
     while len(roster) < 11:
-        roster.append(gen_skilled_player(team_profile, gen_skill_pool(team_profile, skills_col)))
+        roster.append(gen_skilled_player(team_profile, skills_col))
 
     return Team(team_profile.get('name'), team_profile.get('lineman'), roster, team_profile.get('cost'))

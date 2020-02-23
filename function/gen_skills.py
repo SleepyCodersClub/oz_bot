@@ -31,4 +31,6 @@ def roll_skills():
     for _ in range(2):
         result.append(randint(1, 6))
 
+    print(result)
+
     return result
